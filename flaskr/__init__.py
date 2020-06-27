@@ -1,7 +1,7 @@
 import os
 
 from flask import Flask
-from . import db
+from . import db, auth
 
 def create_app(test_config=None):
     # create and configure the app
@@ -27,6 +27,9 @@ def create_app(test_config=None):
     # Import DB and run it
 
     db.init_app(app)
+    
+    #import blueprint 
+    app.register_blueprint(auth.bp)
     
     # a simple page that says hello
     @app.route('/hello')
